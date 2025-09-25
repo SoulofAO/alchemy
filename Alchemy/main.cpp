@@ -4,5 +4,5 @@
 
 int main()
 {
-	return alchemy2::main();
+	return alchemy1::main();
 }

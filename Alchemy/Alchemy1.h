@@ -38,7 +38,6 @@ public:
 public:
 	virtual std::string name() const = 0;
 	virtual void use(Character *target) = 0;
-	virtual Kind kind() const = 0;
 };
 
 
@@ -55,7 +54,6 @@ public:
 
 	virtual void use(Character* target) override;
 
-	virtual Kind kind() const override { return Item::Kind::kFlower; }
 };
 
 
@@ -67,7 +65,6 @@ public:
 
 	virtual void use(Character* target) override;
 
-	virtual Kind kind() const override { return Item::Kind::kFang; }
 };
 
 
@@ -78,8 +75,6 @@ public:
 	}
 
 	virtual void use(Character* target) override;
-
-	virtual Kind kind() const override { return Item::Kind::kEye; }
 };
 
 
@@ -101,8 +96,6 @@ public:
 
 	virtual void use(Character* target) override;
 
-	virtual Kind kind() const override { return Item::Kind::kHealthPotion; }
-
 private:
 	int hp_;
 };
@@ -116,7 +109,6 @@ public:
 
 	virtual void use(Character* target) override;
 
-	virtual Kind kind() const override { return Item::Kind::kManaPotion; }
 };
 
 

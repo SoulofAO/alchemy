@@ -2,6 +2,7 @@
 
 #include <cassert>
 #include <iomanip>
+#include <typeinfo>
 
 namespace alchemy1 {
 
@@ -35,12 +36,17 @@ void ManaPotion::use(Character* target)
 }
 
 
-void Inventory::add(int slot, Item* item) 
+void Inventory::add(int slot, Item* item)
 {
 	assert(slot >= 0 && slot < kNumSlots);
 
-	if (items_[slot].size() >= kStackMax)
+	if (!items_[slot].empty() && typeid(items_[slot][0]) != typeid(item)) {
 		return;
+	}
+
+	if (items_[slot].size() >= kStackMax) {
+		return;
+	}
 
 	items_[slot].push_back(item);
 }
@@ -70,7 +76,7 @@ int Inventory::findSuitableSlot(Item* item)
 	// 1. there is a stack of same items with size < MAX
 	for (int i = 0; i < kNumSlots; ++i) {
 		if (items_[i].size() > 0 
-				&& items_[i][0]->kind() == item->kind() 
+				&& typeid(items_[i][0]) == typeid(item)
 				&& items_[i].size() < kStackMax) {
 			return i;
 		}
